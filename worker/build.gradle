@@ -1,12 +1,13 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
     id 'java'
+    id 'com.palantir.docker' version '0.22.1'
 }
 
 apply plugin: 'io.spring.dependency-management'
 
 group = 'pl.bartek.thesis'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -27,4 +28,21 @@ dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
+}
+
+bootJar {
+    baseName = 'lb-eureka-server'
+    version = "${version}"
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into('build/dependency')
+}
+
+docker {
+    name "${bootJar.baseName}"
+    copySpec.from(tasks.unpack.outputs).into('dependency')
+    buildArgs(['DEPENDENCY': 'dependency'])
 }
