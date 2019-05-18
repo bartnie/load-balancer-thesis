@@ -1,0 +1,48 @@
+.my-body {
+    background: aliceblue;
+}
+
+.my-header-text {
+    /*color: #787878;*/
+    color: #606060;
+}
+
+.my-header-text::after {
+    content: '';
+    display: block;
+    border: 1px solid #fbc3ab;
+    width: 70%;
+    margin: 20px auto;
+}
+
+.my-flash-message {
+    width:83%;
+    border: 1px solid forestgreen;
+    border-left: 0px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.my-configuration-text {
+    color: #606060;
+}
+
+.my-ip-span {
+    float: right;
+    color: #606060;
+}
+
+.my-configuration {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    border: #FFC7AE solid 1px;
+}
+
+.my-button {
+    width: 200px;
+    width: 30%
+}
+
