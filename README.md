@@ -1,2 +1,2 @@
 # load-balancer-thesis
-Project for measuring different types of loadbalancing
+Project for comparing and optimizing loadbalancing algorithms
