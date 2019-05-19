@@ -1,11 +1,12 @@
-cd eureka
+#!/usr/bin/env bash
+cd ../eureka
 ./gradlew docker
-echo 'EUREKA SERVER DOCKER IMAGE BUILT'
+echo $'\n'EUREKA SERVER DOCKER IMAGE BUILT$'\n'
 
 cd ../master
 ./gradlew docker
-echo 'MASTER SERVICE DOCKER IMAGE BUILT'
+echo $'\n'MASTER SERVICE DOCKER IMAGE BUILT$'\n'
 
 cd ../worker
 ./gradlew docker
-echo 'WORKER SERVICE DOCKER IMAGE BUILT'
+echo $'\n'WORKER SERVICE DOCKER IMAGE BUILT$'\n'
