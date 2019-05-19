@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import pl.bartek.thesis.master.converter.worker.configuration.WorkerConfigurationConverter;
 import pl.bartek.thesis.master.domain.worker.configuraton.WorkerConfiguration;
 import pl.bartek.thesis.master.dto.worker.configuration.WorkerConfigurationDto;
@@ -15,23 +16,19 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
     private final WorkerConfigurationConverter configurationConverter;
 
+    private final RestTemplate restTemplate = new RestTemplate();
+
     @Autowired
     public ConfigurationServiceImpl(final WorkerConfigurationConverter configurationConverter) {
         this.configurationConverter = configurationConverter;
     }
 
-//    @Resource
-//    private RestTemplate restTemplate;
 
     @Override
     public boolean sendConfiguration(final WorkerConfiguration configuration) {
-//        final String URL = "https://webhook.site/6d0e8fcc-9142-4fe1-95fb-a2c6a3e82651";
-
         final WorkerConfigurationDto configurationDto = configurationConverter.convert(configuration);
-        LOG.info("Making call with configuration");
-//        final RestTemplate restTemplate = new RestTemplate();
-//        final URI result = restTemplate.postForLocation(URL, configuration);
-
-        return false;
+        LOG.info("MAKING call with configuration");
+        restTemplate.postForLocation(configuration.getInstanceURI().resolve("/configuration"), configuration);
+        return true;
     }
 }
