@@ -3,7 +3,7 @@ package pl.bartek.thesis.worker.configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import pl.bartek.thesis.worker.domain.distribution.DistributionType;
+import pl.bartek.thesis.worker.distribution.DistributionType;
 import pl.bartek.thesis.worker.dto.configuration.WorkerConfigurationDto;
 
 @Component
