@@ -22,7 +22,7 @@ public class DoWorkController {
 
     @GetMapping("/work")
     public ResponseEntity<String> doWork(){
-        LOG.info("Work request received");
+        LOG.info("RECEIVED work request");
         workService.doWork();
 
         return new ResponseEntity<>(HttpStatus.ACCEPTED);

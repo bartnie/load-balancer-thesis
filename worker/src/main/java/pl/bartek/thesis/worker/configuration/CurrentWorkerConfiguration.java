@@ -30,7 +30,7 @@ public class CurrentWorkerConfiguration {
     }
 
     public void changeConfiguration(final WorkerConfigurationDto configurationDto) {
-        LOG.info("Changing current configuration");
+        LOG.info("CHANGING current configuration");
 
         this.delay = configurationDto.getDelay();
         this.distribution = configurationDto.getDistribution();

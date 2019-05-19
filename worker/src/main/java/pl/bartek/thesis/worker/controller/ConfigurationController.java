@@ -27,16 +27,16 @@ public class ConfigurationController {
 
     @PostMapping
     public ResponseEntity<String> setConfiguration(@Valid @RequestBody final WorkerConfigurationDto configurationDto) {
-        LOG.info("Recieved configuration: " + configurationDto);
+        LOG.info("RECEIVED configuration: " + configurationDto);
         currentConfiguration.changeConfiguration(configurationDto);
 
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @GetMapping
-    public ResponseEntity<WorkerConfigurationDto> setConfiguration() {
+    public ResponseEntity<WorkerConfigurationDto> getConfiguration() {
         final WorkerConfigurationDto currentConfigurationDto = currentConfiguration.gatCurrentConfigurationDto();
-        LOG.info("Recieved configuration: " + currentConfigurationDto);
+        LOG.info("SENDING configuration: " + currentConfigurationDto);
 
         return new ResponseEntity<>(currentConfigurationDto, HttpStatus.ACCEPTED);
     }

@@ -21,10 +21,10 @@ public class TestServiceImpl implements TestService {
     }
 
     private void changeLoadBalancerAlgorithm(final LoadBalancingAlgorithmType algorithmType) {
-        LOG.info("Changing load balancing algorithm implementation to: {}", algorithmType.getDisplayName());
+        LOG.info("CHANGING load balancing algorithm implementation to: {}", algorithmType.getDisplayName());
     }
 
     private void runTest(final int callsNumber) {
-        LOG.info("Starting test with {} {}", callsNumber, (callsNumber > 1 ? "calls" : "call"));
+        LOG.info("STARTING test with {} {}", callsNumber, (callsNumber > 1 ? "calls" : "call"));
     }
 }
