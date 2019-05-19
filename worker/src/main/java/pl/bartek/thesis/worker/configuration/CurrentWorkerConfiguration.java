@@ -15,6 +15,12 @@ public class CurrentWorkerConfiguration {
     private int distribution;
     private DistributionType distributionType;
 
+    public CurrentWorkerConfiguration() {
+        this.delay = 0;
+        this.distribution = 0;
+        this.distributionType = DistributionType.NORMAL;
+    }
+
     public int getDelay() {
         return delay;
     }
