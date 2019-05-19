@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  lb-eureka-server:
+    image: lb-eureka-server
+    ports:
+     - "8010:8010"
+    environment:
+      PORT: 8010
+
+  lb-master-service:
+    depends_on:
+      - lb-eureka-server
+    image: lb-master-service
+    ports:
+      - "8020:8020"
+    environment:
+      PORT: 8020
+      EUREKA_PORT: 8010
+
+  lb-worker-service:
+    depends_on:
+      - lb-eureka-server
+    image: lb-worker-service
+    environment:
+      PORT: 8030
+      EUREKA_PORT: 8010
