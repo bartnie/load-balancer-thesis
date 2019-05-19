@@ -2,19 +2,32 @@ package pl.bartek.thesis.master.domain.worker.configuraton;
 
 import pl.bartek.thesis.master.domain.distribution.DistributionType;
 
+import java.net.URI;
+
 public class WorkerConfiguration {
 
-    private final String ip;
+    private URI instanceURI;
     private int delay;
     private int distribution;
     private DistributionType distributionType;
 
-    public WorkerConfiguration(final String ip) {
-        this.ip = ip;
+    public WorkerConfiguration() {
+        this.delay = 0;
+        this.distribution = 0;
+        this.distributionType = DistributionType.NORMAL;
     }
 
-    public String getIp() {
-        return ip;
+    public WorkerConfiguration(final URI instanceURI) {
+        this();
+        this.instanceURI = instanceURI;
+    }
+
+    public void setInstanceURI(final URI instanceURI) {
+        this.instanceURI = instanceURI;
+    }
+
+    public URI getInstanceURI() {
+        return instanceURI;
     }
 
     public int getDelay() {
@@ -44,7 +57,7 @@ public class WorkerConfiguration {
     @Override
     public String toString() {
         return "WorkerConfiguration{" +
-                "ip=" + ip +
+                "instanceURI=" + instanceURI +
                 ", delay=" + delay +
                 ", distribution=" + distribution +
                 ", distributionType=" + distributionType +
