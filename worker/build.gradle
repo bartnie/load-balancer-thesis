@@ -31,7 +31,7 @@ dependencyManagement {
 }
 
 bootJar {
-    baseName = 'lb-eureka-server'
+    baseName = 'lb-worker-service'
     version = "${version}"
 }
 
