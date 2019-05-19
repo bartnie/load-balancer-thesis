@@ -25,31 +25,36 @@
 
 <section class="pb-5">
     <div class="container pb-5">
-        <div class="my-4 pt-4">
-            <form th:object="${worker1}" th:action="@{/send}" method="post">
-                <h2 class="my-configuration-text my-3 col-12">Worker 1<span class="my-ip-span">IP: <span th:text="${worker1.getIp()}"></span></span></h2>
-            <div class="my-configuration px-5">
-                    <input type="hidden" th:field="*{ip}"/>
+
+        <div class="my-4 pt-4" th:each="worker, iter : ${workers}">
+            <form th:object="${newWorker}" th:action="@{/send}" method="post">
+                <h2 class="my-configuration-text my-3 col-12">Worker <span th:text="${iter.index + 1}"></span><span class="my-ip-span">URI: <span
+                        th:text="${worker.getInstanceURI()}"></span></span></h2>
+                <div class="my-configuration px-5">
+                    <input type="hidden" th:name="instanceURI" th:value="${worker.getInstanceURI()}"/>
 
                     <div class="row my-4">
                         <div class="col-6">
                             <label class="form-control-label">Delay</label>
-                            <input type="number" min="0" class="form-control" th:field="*{delay}">
+                            <input type="number" min="0" class="form-control" th:name="delay"
+                                   th:value="${worker.getDelay()}">
                         </div>
                     </div>
 
                     <div class="row my-4">
                         <div class="col-6">
                             <label class="form-control-label">Distribuition</label>
-                            <input type="number" min="0" class="form-control" th:field="*{distribution}">
+                            <input type="number" min="0" class="form-control" th:name="distribution"
+                                   th:value="${worker.getDistribution()}">
                         </div>
 
                         <div class="col-6">
                             <label class="form-control-label">Distribuition type</label>
-                            <select class="form-control" th:field="*{distributionType}">
+                            <select class="form-control" th:name="distributionType">
                                 <option th:each="distributionType : ${T(pl.bartek.thesis.master.domain.distribution.DistributionType).values()}"
                                         th:value="${distributionType.name()}"
-                                        th:text="${distributionType.getDisplayName()}">
+                                        th:text="${distributionType.getDisplayName()}"
+                                        th:selected="${distributionType.equals(worker.getDistributionType())}">
                                 </option>
                             </select>
                         </div>
@@ -59,46 +64,8 @@
                             <i class="fas fa-wrench pr-1"></i>Send configuration
                         </button>
                     </div>
-            </div>
+                </div>
             </form>
-        </div>
-
-        <div class="my-4 pt-4">
-            <h2 class="my-configuration-text my-3 col-12">Worker 2<span class="my-ip-span">IP: <span th:text="${worker2.getIp()}"></span></span></h2>
-            <div class="my-configuration px-5">
-                <form th:object="${worker2}" th:action="@{/send}" method="post">
-                    <input type="hidden" th:field="*{ip}"/>
-
-                    <div class="row my-4">
-                        <div class="col-6">
-                            <label class="form-control-label">Delay</label>
-                            <input type="number" min="0" class="form-control" th:field="*{delay}">
-                        </div>
-                    </div>
-
-                    <div class="row my-4">
-                        <div class="col-6">
-                            <label class="form-control-label">Distribuition</label>
-                            <input type="number" min="0" class="form-control" th:field="*{distribution}">
-                        </div>
-
-                        <div class="col-6">
-                            <label class="form-control-label">Distribuition type</label>
-                            <select class="form-control" th:field="*{distributionType}">
-                                <option th:each="distributionType : ${T(pl.bartek.thesis.master.domain.distribution.DistributionType).values()}"
-                                        th:value="${distributionType.name()}"
-                                        th:text="${distributionType.getDisplayName()}">
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-warning my-button px-5 mb-4">
-                            <i class="fas fa-wrench pr-1"></i>Send configuration
-                        </button>
-                    </div>
-                </form>
-            </div>
         </div>
 
         <div class="my-4 pt-4">
