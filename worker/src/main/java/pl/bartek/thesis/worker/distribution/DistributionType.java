@@ -1,4 +1,4 @@
-package pl.bartek.thesis.worker.domain.distribution;
+package pl.bartek.thesis.worker.distribution;
 
 public enum DistributionType {
     NORMAL, UNIFORM;
