@@ -1,6 +1,6 @@
 package pl.bartek.thesis.worker.dto.configuration;
 
-import pl.bartek.thesis.worker.domain.distribution.DistributionType;
+import pl.bartek.thesis.worker.distribution.DistributionType;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
