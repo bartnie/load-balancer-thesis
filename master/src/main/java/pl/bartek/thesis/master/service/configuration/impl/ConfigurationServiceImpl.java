@@ -13,9 +13,9 @@ import pl.bartek.thesis.master.service.configuration.ConfigurationService;
 @Component
 public class ConfigurationServiceImpl implements ConfigurationService {
     private static final Logger LOG = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
+    private static final String WORKER_CONFIGURATION_ENDPOINT = "/configuration";
 
     private final WorkerConfigurationConverter configurationConverter;
-
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
@@ -23,12 +23,11 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         this.configurationConverter = configurationConverter;
     }
 
-
     @Override
     public boolean sendConfiguration(final WorkerConfiguration configuration) {
         final WorkerConfigurationDto configurationDto = configurationConverter.convert(configuration);
         LOG.info("MAKING call with configuration");
-        restTemplate.postForLocation(configuration.getInstanceURI().resolve("/configuration"), configuration);
+        restTemplate.postForLocation(configuration.getInstanceURI().resolve(WORKER_CONFIGURATION_ENDPOINT), configuration);
         return true;
     }
 }
