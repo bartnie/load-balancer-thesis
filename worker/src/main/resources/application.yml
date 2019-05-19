@@ -1,1 +1,11 @@
+spring:
+  application:
+    name: lb-worker-service
 
+server:
+  port: ${PORT:8030}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://lb-eureka-server:${EUREKA_PORT:8010}/eureka/

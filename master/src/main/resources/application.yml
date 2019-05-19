@@ -1,1 +1,15 @@
+spring:
+  application:
+    name: lb-master-service
+
+server:
+  port: ${PORT:8020}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://lb-eureka-server:${EUREKA_SERVER:8010}/eureka/
+
+worker:
+  serviceId: lb-worker-service
 

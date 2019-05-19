@@ -1,1 +1,16 @@
+spring:
+  application:
+    name: lb-eureka-server
 
+server:
+  port: ${PORT:8010}
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: lb-eureka-server
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://lb-eureka-server:${EUREKA_PORT:8010}/eureka/
